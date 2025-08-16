@@ -1,13 +1,14 @@
-/* YAXSHILANISH №3: Markazlashtirilgan Stil Boshqaruvi (CSS Variables) */
+/* CSS Variables for easy theme management */
 :root {
   --primary-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   --background-color: #f4f4f4;
   --text-color: #333;
   --light-text-color: #777;
+  --quote-mark-color: #ccc;
   --container-bg: white;
-  --accent-color: #333;
-  --accent-hover: #555;
+  --accent-color: #2c3e50;
+  --accent-hover: #34495e;
   --border-radius: 12px;
   --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
@@ -20,23 +21,24 @@
 
 body {
   font-family: var(--primary-font);
-  line-height: 1.5: var(--background-color);
+  line-height: 1.6;
+  background-color: var(--background-color);
   color: var(--text-color);
-  display: grid;
-  place-content: center;
   min-height: 100vh;
   padding: 20px;
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  padding-top: 15vh;
 }
 
 .quote-container {
+  margin-bottom: 30px;
   background-color: var(--container-bg);
   padding: 40px 50px;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   max-width: 700px;
-  text-align: center;
-
-  /* YAXSHILANISH №4: Silliq animatsiya */
   transition: box-shadow 0.3s ease;
 }
 
@@ -44,44 +46,27 @@ body {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* MUAMMO №1 YECHIMI: Endi blockquote va figcaption to'g'ri joylashadi */
 .quote-text {
   font-size: 1.8rem;
   font-style: italic;
   margin-bottom: 25px;
+  text-align: center;
 }
 
-/* Ochuvchi qo'shtirnoq stili (o'zgarishsiz qoladi) */
 .quote-text::before {
   content: "“";
-  margin-right: 10px; /* Matn va qo'shtirnoq orasida joy */
-  font-weight: bold;
-  color: #ccc;
-  font-size: 1.3em;
-  vertical-align: middle;
+  margin-right: 8px;
 }
 
-/* ===== YOPUVCHI QO'SHTIRNOQ UCHUN YANGI YECHIM ===== */
-/* Ochuvchi qo'shtirnoq stili (matn bilan birga harakatlanadi) */
-.quote-text::before {
-  content: "“";
-  margin-right: 8px; /* Ochuvchi qo'shtirnoq va matn orasida bo'sh joy */
-}
-
-/* Yopuvchi qo'shtirnoq stili (matn bilan birga harakatlanadi) */
 .quote-text::after {
   content: "”";
-  margin-left: 8px; /* Oxirgi so'z va yopuvchi qo'shtirnoq orasida bo'sh joy */
+  margin-left: 8px;
 }
 
-/* Ikkala qo'shtirnoq uchun umumiy dizayn */
 .quote-text::before,
 .quote-text::after {
-  /* Bu yerda pozitsiyaga yoki display'ga oid hech narsa yo'q */
-  /* Ular standart `inline` element kabi harakatlanadi */
-
-  font-weight: bold;
-  color: #ccc;
+  font-weight: 700;
+  color: var(--quote-mark-color);
   font-size: 1.3em;
   vertical-align: middle;
 }
@@ -89,9 +74,10 @@ body {
 .quote-author {
   display: block;
   font-size: 1.1rem;
-  font-weight: 700; /* Bold */
+  font-weight: 700;
   color: var(--light-text-color);
   text-align: right;
+  margin-top: 10px;
 }
 
 .quote-author::before {
@@ -122,24 +108,34 @@ body {
   transform: scale(0.98);
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 15px;
-    line-height: 1.2;
-  }
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
   .quote-container {
-    padding: 30px 20px;
+    padding: 30px 25px;
   }
   .quote-text {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .quote-author {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+    padding-top: 10vh;
+  }
+  .quote-container {
+    padding: 25px 20px;
+  }
+  .quote-text {
+    font-size: 1.3rem;
   }
   .btn {
     position: static;
     width: 100%;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 40px;
   }
 }
