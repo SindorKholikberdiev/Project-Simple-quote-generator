@@ -1,0 +1,145 @@
+/* YAXSHILANISH №3: Markazlashtirilgan Stil Boshqaruvi (CSS Variables) */
+:root {
+  --primary-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --light-text-color: #777;
+  --container-bg: white;
+  --accent-color: #333;
+  --accent-hover: #555;
+  --border-radius: 12px;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--primary-font);
+  line-height: 1.5: var(--background-color);
+  color: var(--text-color);
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.quote-container {
+  background-color: var(--container-bg);
+  padding: 40px 50px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-width: 700px;
+  text-align: center;
+
+  /* YAXSHILANISH №4: Silliq animatsiya */
+  transition: box-shadow 0.3s ease;
+}
+
+.quote-container:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* MUAMMO №1 YECHIMI: Endi blockquote va figcaption to'g'ri joylashadi */
+.quote-text {
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+/* Ochuvchi qo'shtirnoq stili (o'zgarishsiz qoladi) */
+.quote-text::before {
+  content: "“";
+  margin-right: 10px; /* Matn va qo'shtirnoq orasida joy */
+  font-weight: bold;
+  color: #ccc;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+/* ===== YOPUVCHI QO'SHTIRNOQ UCHUN YANGI YECHIM ===== */
+/* Ochuvchi qo'shtirnoq stili (matn bilan birga harakatlanadi) */
+.quote-text::before {
+  content: "“";
+  margin-right: 8px; /* Ochuvchi qo'shtirnoq va matn orasida bo'sh joy */
+}
+
+/* Yopuvchi qo'shtirnoq stili (matn bilan birga harakatlanadi) */
+.quote-text::after {
+  content: "”";
+  margin-left: 8px; /* Oxirgi so'z va yopuvchi qo'shtirnoq orasida bo'sh joy */
+}
+
+/* Ikkala qo'shtirnoq uchun umumiy dizayn */
+.quote-text::before,
+.quote-text::after {
+  /* Bu yerda pozitsiyaga yoki display'ga oid hech narsa yo'q */
+  /* Ular standart `inline` element kabi harakatlanadi */
+
+  font-weight: bold;
+  color: #ccc;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+.quote-author {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700; /* Bold */
+  color: var(--light-text-color);
+  text-align: right;
+}
+
+.quote-author::before {
+  content: "— ";
+}
+
+.btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  background-color: var(--accent-color);
+  color: var(--container-bg);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+    line-height: 1.2;
+  }
+  .quote-container {
+    padding: 30px 20px;
+  }
+  .quote-text {
+    font-size: 1.3rem;
+  }
+  .quote-author {
+    font-size: 1rem;
+  }
+  .btn {
+    position: static;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+  }
+}
