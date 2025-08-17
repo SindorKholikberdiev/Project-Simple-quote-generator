@@ -1,1 +1,1 @@
-# Project-Simple-quote-generator
+# Project-Quote-generator
